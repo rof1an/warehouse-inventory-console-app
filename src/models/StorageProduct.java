@@ -1,11 +1,11 @@
 package models;
 
-public class StorageProducts {
-    int storageId;
-    int productId;
-    int productCount;
+public class StorageProduct {
+    private int storageId;
+    private int productId;
+    private int productCount;
 
-    StorageProducts(int storageId, int productId, int productCount) {
+    public StorageProduct(int storageId, int productId, int productCount) {
         this.storageId = storageId;
         this.productId = productId;
         this.productCount = productCount;
@@ -15,7 +15,7 @@ public class StorageProducts {
         return storageId;
     }
     public void setStorageId(int id){
-        productId = id;
+        storageId = id;
     }
 
     public int getProductId(){

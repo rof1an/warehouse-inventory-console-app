@@ -1,11 +1,10 @@
 package models;
 
-import java.util.ArrayList;
 
 public class Storage {
-    int storageId;
-    String storageName;
-    String storageLocation;
+    private int storageId;
+    private String storageName;
+    private String storageLocation;
 
     public Storage(String storageName, String storageLocation, int storageId) {
         this.storageId = storageId;

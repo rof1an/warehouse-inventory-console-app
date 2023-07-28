@@ -1,9 +1,9 @@
 package models;
 
 public class Product {
-    int productId;
-    int productCost;
-    String productName;
+    private int productId;
+    private int productCost;
+    private String productName;
 
 
     public Product(String productName, int productCost, int productId) {
@@ -28,7 +28,7 @@ public class Product {
         this.productCost = cost;
     }
 
-    public int getProductId(int id) {
+    public int getProductId() {
         return productId;
     }
 
