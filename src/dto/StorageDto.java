@@ -3,12 +3,12 @@ package dto;
 public class StorageDto {
     private int id;
     private String name;
-    private String adress;
+    private String address;
 
-    public StorageDto(int id, String name, String adress) {
+    public StorageDto(int id, String name, String address) {
         this.id = id;
         this.name = name;
-        this.adress = adress;
+        this.address = address;
     }
 
     public int getId() {
@@ -28,10 +28,10 @@ public class StorageDto {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 }

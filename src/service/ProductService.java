@@ -2,7 +2,6 @@ package service;
 
 import models.Product;
 import repository.ProductRepository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +19,10 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.getAll();
+        return productRepository.getProducts();
     }
 
-    public void create() {
+    public void addProduct(String name, int cost, int id) {
+        productRepository.addProduct(name, cost, id);
     }
 }

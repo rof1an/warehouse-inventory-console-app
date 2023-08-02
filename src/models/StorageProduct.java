@@ -1,9 +1,7 @@
 package models;
 
 public class StorageProduct {
-    private int storageId;
-    private int productId;
-    private int productCount;
+    private int storageId, productCount, productId;
 
     public StorageProduct(int storageId, int productId, int productCount) {
         this.storageId = storageId;

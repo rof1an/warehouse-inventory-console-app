@@ -1,7 +1,6 @@
 package repository;
 
 import models.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ public class ProductRepository {
         return productList;
     }
 
-    public List<Product> getAll() {
+    public List<Product> getProducts() {
         return productList;
     }
 
@@ -30,7 +29,8 @@ public class ProductRepository {
                 .findFirst();
     }
 
-    public void add() {
+    public void addProduct(String name, int cost, int id) {
+        productList.add(new Product(name, cost, id));
     }
 
     public static List<Product> filterPriceMore(int price) {
