@@ -19,7 +19,7 @@ public class StorageRepository {
         return storageList;
     }
 
-    public Optional<Storage> getById(int id){
+    public Optional<Storage> getStorageById(int id){
         return storageList.stream()
                 .filter(st -> st.getStorageId() == id)
                 .findFirst();

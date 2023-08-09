@@ -8,21 +8,16 @@ import java.util.Optional;
 public class ProductService {
     private ProductRepository productRepository = new ProductRepository();
 
-    public void getById(String strId) {
-        int id = Integer.parseInt(strId);
+    public Optional<Product> getById(int id) {
         Optional<Product> product = productRepository.getById(id);
-        if (product.isPresent()) {
-            System.out.println(product.get());
-        } else {
-            System.out.printf("Not found with id: %d", id);
-        }
+        return product;
     }
 
     public List<Product> getAllProducts() {
         return productRepository.getProducts();
     }
 
-    public void addProduct(String name, int cost, int id) {
-        productRepository.addProduct(name, cost, id);
+    public void addProduct(String name, int cost) {
+        productRepository.addProduct(name, cost);
     }
 }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ProductRepository {
     private static List<Product> productList = initializeData();
 
-    public static List<Product> initializeData(){
+    public static List<Product> initializeData() {
         ArrayList<Product> productList = new ArrayList<>();
         productList.add(new Product("Молоко", 450, 1));
         productList.add(new Product("Сахар", 250, 2));
@@ -29,9 +29,19 @@ public class ProductRepository {
                 .findFirst();
     }
 
-    public void addProduct(String name, int cost, int id) {
-        productList.add(new Product(name, cost, id));
-    }
+    public int getMaxProductId(){
+        return productList.stream()
+                .mapToInt(Product::getProductId)
+                .max()
+                .orElse(0);
+    };
+
+    public Product addProduct(String name, int cost) {
+        int id = getMaxProductId() + 1;
+        Product newProduct = new Product(name, cost, id);
+        productList.add(newProduct);
+        return newProduct;
+    };
 
     public static List<Product> filterPriceMore(int price) {
         return productList

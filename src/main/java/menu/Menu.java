@@ -1,14 +1,15 @@
 package menu;
 
-import java.util.List;
-import java.util.Scanner;
-
+import dto.StorageProductResultDto;
 import models.Product;
 import models.Storage;
-import models.StorageProduct;
 import service.ProductService;
 import service.StorageProductService;
 import service.StorageService;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class Menu {
     private static Scanner scan = new Scanner(System.in);
@@ -16,18 +17,26 @@ public class Menu {
     private static StorageService storageService = new StorageService();
     private static StorageProductService storageProductService = new StorageProductService();
 
-    public void getStorageId() {
+    public void getProductId() {
         while (true) {
-            System.out.println("Введите id склада");
-            // todo сделать вывод всех складов
-            String strId = scan.nextLine();
-            productService.getById(strId);
+            System.out.println("Введите id продукта");
+            int id = scan.nextInt();
+
+            Optional<Product> product = productService.getById(id);
+            if (product.isPresent()) {
+                System.out.println(product.get());
+            } else {
+                System.out.printf("Not found with id: %d", id);
+            }
         }
     }
 
     public void start() {
         while (true) {
-            System.out.println( "Что нужно показать? \n 1.Все склады \n 2.Список продуктов на складе \n 3.Список всех продуктов \n 4.Добавить склад \n 5.Добавить продукт");
+            System.out.println(
+                    "Что нужно показать? \n 1.Все склады \n 2.Список продуктов на складе \n " +
+                            "3.Список всех продуктов \n 4.Добавить склад \n 5.Добавить продукт"
+            );
             switch (scan.nextInt()) {
                 case (1):
                     showAllStorages(storageService);
@@ -38,10 +47,10 @@ public class Menu {
                 case (3):
                     getAllProducts(productService);
                     break;
-                case(4):
+                case (4):
                     addNewStorage();
                     break;
-                case(5):
+                case (5):
                     addNewProduct();
                     break;
             }
@@ -64,7 +73,7 @@ public class Menu {
         }
     }
 
-    public void addNewStorage(){
+    public void addNewStorage() {
         System.out.println("Название склада: \n");
         scan.nextLine();
         String name = scan.nextLine();
@@ -79,7 +88,7 @@ public class Menu {
         storageService.addNewStorage(name, address, id);
     }
 
-    public void addNewProduct(){
+    public void addNewProduct() {
         System.out.println("Название продукта:");
         scan.nextLine();
         String name = scan.nextLine();
@@ -87,18 +96,15 @@ public class Menu {
         System.out.println("Цена продукта:");
         int cost = scan.nextInt();
 
-        System.out.println("Id продукта:");
-        int id = scan.nextInt();
-
-        productService.addProduct(name, cost, id);
+        productService.addProduct(name, cost);
     }
 
     public static void showProductsInStorage() {
-        List<StorageProduct> storageProductList = storageProductService.getProductStorageList();
+        List<StorageProductResultDto> storageProductList = storageProductService.getProductStorageList();
 
-        System.out.println("st. id\t\tpr. id\t\tcount");
-        for (StorageProduct stProduct : storageProductList) {
-            System.out.printf("%d\t\t\t%d\t\t\t%d\n", stProduct.getStorageId(), stProduct.getProductId(), stProduct.getProductCount());
+        System.out.println("storage\t\tproduct\t\tcount");
+        for (StorageProductResultDto stProduct : storageProductList) {
+            System.out.printf("%s\t\t\t%s\t\t\t%s\n", stProduct.getStorage().getStorageName(), stProduct.getProduct().getProductName(), stProduct.getCount());
         }
     }
 }

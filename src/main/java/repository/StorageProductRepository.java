@@ -1,9 +1,6 @@
 package repository;
 
-import models.Product;
-import models.Storage;
 import models.StorageProduct;
-
 import java.util.ArrayList;
 import java.util.List;
 
