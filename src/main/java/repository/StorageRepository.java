@@ -25,7 +25,15 @@ public class StorageRepository {
                 .findFirst();
     }
 
-    public void addNewStorage(String name, String location, int id){
+    public int getMaxStorageId(){
+        return storageList.stream()
+                .mapToInt(Storage::getStorageId)
+                .max()
+                .orElse(0);
+    }
+
+    public void addNewStorage(String name, String location){
+        int id = getMaxStorageId();
         storageList.add(new Storage(name, location, id));
     }
 }

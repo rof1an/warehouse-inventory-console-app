@@ -16,7 +16,7 @@ public class StorageService {
         return storageRepository.getStorageById(id);
     }
 
-    public void addNewStorage(String name, String location, int id) {
-        storageRepository.addNewStorage(name, location, id);
+    public void addNewStorage(String name, String location) {
+        storageRepository.addNewStorage(name, location);
     }
 }

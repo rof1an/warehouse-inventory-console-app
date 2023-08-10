@@ -8,7 +8,6 @@ import service.StorageProductService;
 import service.StorageService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Menu {
@@ -17,19 +16,6 @@ public class Menu {
     private static StorageService storageService = new StorageService();
     private static StorageProductService storageProductService = new StorageProductService();
 
-    public void getProductId() {
-        while (true) {
-            System.out.println("Введите id продукта");
-            int id = scan.nextInt();
-
-            Optional<Product> product = productService.getById(id);
-            if (product.isPresent()) {
-                System.out.println(product.get());
-            } else {
-                System.out.printf("Not found with id: %d", id);
-            }
-        }
-    }
 
     public void start() {
         while (true) {
@@ -81,11 +67,7 @@ public class Menu {
         System.out.println("Адрес склада: \n");
         String address = scan.nextLine();
 
-        System.out.println("Id склада: \n");
-        String strId = scan.nextLine();
-        int id = Integer.parseInt(strId);
-
-        storageService.addNewStorage(name, address, id);
+        storageService.addNewStorage(name, address);
     }
 
     public void addNewProduct() {
